@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ações JS — Agenda Comercial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="acoes.css" />
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zM7 12h5v5H7z"/>
+      </svg>
+    </div>
+    <span class="logo-name">Agenda<span> Comercial</span></span>
+  </div>
+  <div class="header-nav">
+    <a href="index.html" class="nav-link">← Voltar ao sistema</a>
+  </div>
+</header>
+
+<main>
+
+  <div class="grupo-banner">
+    <div class="grupo-pill">PI — Fase 02 &nbsp;|&nbsp; Engenharia de Software</div>
+    <p class="grupo-nomes">
+      Luiz Fernando Silveira Rodrigues &nbsp;·&nbsp;
+      Guilherme Antunes dos Santos &nbsp;·&nbsp;
+      Paulo Victor dos Santos
+    </p>
+    <p class="grupo-orientador">Prof. Orientador: Lucas Dourado</p>
+  </div>
+
+  <h1 class="page-title">Ações JavaScript</h1>
+  <p class="page-sub">
+    Duas funcionalidades específicas do sistema de Agenda Comercial,
+    descritas, estilizadas e implementadas com JavaScript.
+  </p>
+
+  <section class="acao-section" id="acao1">
+
+    <div class="acao-header">
+      <div class="acao-numero">01</div>
+      <div>
+        <h2 class="acao-titulo">Filtro de Profissionais por Serviço</h2>
+        <p class="acao-subtitulo">
+          Ao selecionar um serviço, apenas os profissionais habilitados para
+          aquela especialidade são exibidos — impedindo agendamentos inválidos.
+        </p>
+      </div>
+    </div>
+
+    <div class="descricao-bloco">
+      <div class="descricao-item">
+        <span class="desc-icone">⚙️</span>
+        <div>
+          <strong>Funcionalidade</strong>
+          <p>
+            Cada profissional possui um array <code>especialidades[]</code> com
+            os IDs dos serviços que ele atende. Ao trocar o serviço selecionado,
+            a função <code>filtrarProfissionais()</code> percorre todos os
+            profissionais e renderiza apenas os que contêm aquele serviço na lista.
+          </p>
+        </div>
+      </div>
+      <div class="descricao-item">
+        <span class="desc-icone">🎯</span>
+        <div>
+          <strong>Aplicabilidade</strong>
+          <p>
+            Em clínicas, salões e consultórios com equipes multidisciplinares,
+            esse filtro garante que o cliente nunca veja um médico como opção
+            para um serviço de estética — tornando o sistema confiável e profissional.
+          </p>
+        </div>
+      </div>
+      <div class="descricao-item">
+        <span class="desc-icone">💡</span>
+        <div>
+          <strong>Exemplo de uso</strong>
+          <p>
+            Selecione "Barbearia" abaixo: apenas <em>Bruno Melo</em> aparece.
+            Troque para "Psicologia": apenas <em>Elena Costa</em>.
+            "Odontologia": apenas <em>Ana Lima</em>, e assim por diante.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-label">▶ Demonstração interativa</div>
+
+      <div class="demo-filtro-row">
+        <label class="demo-select-label" for="demo-servico">Serviço selecionado:</label>
+        <div class="servico-chips" id="servico-chips">
+        </div>
+      </div>
+
+      <div class="demo-prof-grid" id="demo-prof-grid">
+      </div>
+
+      <div class="selecao-msg" id="selecao-msg-1"></div>
+    </div>
+
+  </section>
+
+  <div class="secao-divider"></div>
+
+  <section class="acao-section" id="acao2">
+
+    <div class="acao-header">
+      <div class="acao-numero">02</div>
+      <div>
+        <h2 class="acao-titulo">Verificação de Conflito de Horário</h2>
+        <p class="acao-subtitulo">
+          Ao combinar profissional + data, o sistema filtra em tempo real quais
+          horários estão livres ou já reservados — impedindo o duplo agendamento.
+        </p>
+      </div>
+    </div>
+
+    <div class="descricao-bloco">
+      <div class="descricao-item">
+        <span class="desc-icone">⚙️</span>
+        <div>
+          <strong>Funcionalidade</strong>
+          <p>
+            A função <code>verificarConflitos(profId, dataStr)</code> filtra o
+            array <code>AGENDA[]</code> buscando entradas com o mesmo profissional
+            e data. Os horários encontrados são marcados como indisponíveis.
+            Slots livres aceitam clique; slots ocupados exibem tooltip e são
+            bloqueados visualmente.
+          </p>
+        </div>
+      </div>
+      <div class="descricao-item">
+        <span class="desc-icone">🎯</span>
+        <div>
+          <strong>Aplicabilidade</strong>
+          <p>
+            Garante integridade da agenda mesmo antes da integração com o
+            banco de dados MySQL. Essa lógica será replicada no backend
+            Node.js futuramente, mas já funciona no frontend para simulações e demos.
+          </p>
+        </div>
+      </div>
+      <div class="descricao-item">
+        <span class="desc-icone">💡</span>
+        <div>
+          <strong>Exemplo de uso</strong>
+          <p>
+            Selecione "Bruno Melo" e a data de hoje: os horários já
+            "agendados" aparecem bloqueados. Troque para "Ana Lima":
+            outros horários estarão ocupados. Clique num slot livre para
+            simular um novo agendamento e veja o slot ser bloqueado.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-label">▶ Demonstração interativa</div>
+
+      <div class="demo-conflito-controles">
+
+        <div class="form-group">
+          <label>Profissional</label>
+          <select id="demo-prof-select">
+            <option value="">— Selecione —</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Data</label>
+          <input type="date" id="demo-data" />
+        </div>
+
+      </div>
+
+      <div class="slots-contador" id="slots-contador" style="display:none">
+        <span id="slots-livres-num">0</span> horários disponíveis
+        &nbsp;·&nbsp;
+        <span id="slots-ocupados-num">0</span> ocupados
+      </div>
+
+      <div class="demo-times-grid" id="demo-times-grid">
+        <div class="sem-selecao-msg">Selecione um profissional e uma data para ver os horários.</div>
+      </div>
+
+      <div class="selecao-msg" id="selecao-msg-2"></div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="rodape">
+  Agenda Comercial &copy; 2026 &nbsp;·&nbsp; PI Fase 02 &nbsp;·&nbsp; Engenharia de Software
+</footer>
+
+<script src="acoes.js"></script>
+</body>
+</html>
